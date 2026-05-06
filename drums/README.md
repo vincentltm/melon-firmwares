@@ -2,15 +2,6 @@
 
 A 15-kit, 3-voice drum machine for the RP2350. Features include real-time synthesis, waveguided resonators, sample playback, a probabilistic Grids sequencer, and a master bus with an SSL-style compressor and DJ filter.
 
-## Hardware Requirements
-- Microcontroller: Seeed XIAO RP2350 (or compatible RP2040/RP2350 board)
-- Audio Output: PWM Audio out via GPIO 1
-- UI Controls: 
-  - 1x Push Button (GPIO 6) for page navigation and mode switching
-  - 2x Potentiometers (A0, A1) for parameter control
-  - 1x WS2812B RGB LED (GPIO 0) for UI feedback
-- Trigger Input: External clock trigger (GPIO 28)
-
 ## Navigation and Interface
 The UI consists of 8 pages, navigated via push button. The RGB LED indicates the active page. Parameters are modified using the two potentiometers.
 
@@ -77,16 +68,11 @@ Custom drum samples can be compiled into the firmware:
 3. Run the master script: `python samples/process_samples.py`. This regenerates the entire `drum_samples.h`.
 4. Flash the firmware. The custom kit will be accessible as Kit 15, immediately before the External Audio FX kit.
 
-## Audio Engine
-- Sample Rate: 36.6kHz
-- Auto-Save: Settings are automatically saved to EEPROM 5 seconds after the last adjustment.
-- Master Bus: Master Output Gain control followed by an SSL-style diode ring compressor (5ms attack, 100ms release), a state-variable DJ filter, and tanh saturation.
-- DC Blocker: Hardware-level high-pass filter on the final output to eliminate thumps.
-
 ## Sample Sources
 The sample arrays are stored in PROGMEM and interpolated in real-time. The samples utilized in this project are sourced from the public domain:
 - Vintage Drum Machines (TR-909, TR-808, TR-606, LinnDrum, Simmons SDS-V): Sourced from the "Drum Machines Collection" archive (https://archive.org/download/drum-machines-collection).
 - Legacy Samples (Rock, Grit): Sourced from LMMS and public domain acoustic sample libraries.
+- This firmware is designed for the WGD Melon hardware based on HAGIWO Mod 2, featuring a generative engine based on the open-source Grids sequencer by Émilie Gillet (Mutable Instruments).
 
 ## Build Instructions
 1. Install the `arduino-cli`.
